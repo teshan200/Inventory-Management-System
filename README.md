@@ -21,7 +21,7 @@ This project is a menu-driven console application written in C.
 
 ## Requirement Coverage
 - Uses 2 structures: `Supplier` and `Item`
-- Uses array of structures: `Item items[MAX_ITEMS]` where `MAX_ITEMS = 20`
+- Uses array of structures: `Item items[MAX_ITEMS]` where `MAX_ITEMS = 100`
 - Uses strings and string functions: `fgets`, `strcpy`, `strcat`, `strlen`, `strstr`, `strcspn`
 - Uses calculations, conditions, and loops
 - Uses function-based modular design and menu-driven flow

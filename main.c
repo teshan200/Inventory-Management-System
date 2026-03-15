@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_ITEMS 20
+#define MAX_ITEMS 100
 #define NAME_LEN 50
 #define CAT_LEN 30
 #define SUP_LEN 50
