@@ -1,4 +1,4 @@
-# Inventory Management System (Console C)
+# Inventory Management System
 
 This project is a menu-driven console application written in C.
 
@@ -28,17 +28,3 @@ This project is a menu-driven console application written in C.
 
 ## Files
 - `main.c` - complete source code
-
-## Build and Run
-
-### GCC (MinGW)
-```powershell
-gcc -Wall -Wextra -pedantic -std=c11 main.c -o inventory.exe
-.\inventory.exe
-```
-
-### MSVC (Developer Command Prompt)
-```powershell
-cl /W4 main.c
-main.exe
-```
