@@ -1,0 +1,7 @@
+# Ignore everything by default
+*
+
+# Keep only the files you want in GitHub
+!.gitignore
+!main.c
+!README.md
