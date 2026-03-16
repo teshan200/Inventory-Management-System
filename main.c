@@ -94,7 +94,7 @@ int showMenu(void) {
     int choice;
 
     printf("\n===============================================\n");
-    printf("   INVENTORY MANAGEMENT SYSTEM (Console C)\n");
+    printf("   INVENTORY MANAGEMENT SYSTEM  \n");
     printf("===============================================\n");
     printf("1. Add New Item\n");
     printf("2. Display All Items\n");
