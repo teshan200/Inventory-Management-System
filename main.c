@@ -6,38 +6,38 @@
 #define CAT_LEN 30
 #define SUP_LEN 50
 
-typedef struct {
+struct Supplier {
     char supplierName[SUP_LEN];
     char phone[20];
-} Supplier;
+};
 
-typedef struct {
+struct Item {
     int id;
     char name[NAME_LEN];
     char category[CAT_LEN];
     int quantity;
     float unitPrice;
-    Supplier supplier;
+    struct Supplier supplier;
     int isActive;
-} Item;
+};
 
 void clearInputBuffer(void);
-int findItemIndexById(Item items[], int count, int id);
-void addItem(Item items[], int *count);
-void displayItems(const Item items[], int count);
-void searchItem(const Item items[], int count);
-void modifyItem(Item items[], int count);
-void deleteItem(Item items[], int *count);
-void issueItem(Item items[], int count);
-void calculateInventoryTotals(const Item items[], int count);
-void findHighestLowestValueItem(const Item items[], int count);
-void countLowStockItems(const Item items[], int count);
-void concatenateItemAndCategory(const Item items[], int count);
-void checkSubstringInItemName(const Item items[], int count);
+int findItemIndexById(struct Item items[], int count, int id);
+void addItem(struct Item items[], int *count);
+void displayItems(const struct Item items[], int count);
+void searchItem(const struct Item items[], int count);
+void modifyItem(struct Item items[], int count);
+void deleteItem(struct Item items[], int *count);
+void issueItem(struct Item items[], int count);
+void calculateInventoryTotals(const struct Item items[], int count);
+void findHighestLowestValueItem(const struct Item items[], int count);
+void countLowStockItems(const struct Item items[], int count);
+void concatenateItemAndCategory(const struct Item items[], int count);
+void checkSubstringInItemName(const struct Item items[], int count);
 int showMenu(void);
 
 int main(void) {
-    Item items[MAX_ITEMS];
+    struct Item items[MAX_ITEMS];
     int count = 0;
     int choice;
 
@@ -94,7 +94,7 @@ int showMenu(void) {
     int choice;
 
     printf("\n===============================================\n");
-    printf("   INVENTORY MANAGEMENT SYSTEM \n");
+    printf("   INVENTORY MANAGEMENT SYSTEM (Console C)\n");
     printf("===============================================\n");
     printf("1. Add New Item\n");
     printf("2. Display All Items\n");
@@ -124,7 +124,7 @@ void clearInputBuffer(void) {
     }
 }
 
-int findItemIndexById(Item items[], int count, int id) {
+int findItemIndexById(struct Item items[], int count, int id) {
     int i;
     for (i = 0; i < count; i++) {
         if (items[i].id == id && items[i].isActive) {
@@ -134,8 +134,8 @@ int findItemIndexById(Item items[], int count, int id) {
     return -1;
 }
 
-void addItem(Item items[], int *count) {
-    Item newItem;
+void addItem(struct Item items[], int *count) {
+    struct Item newItem;
     int existingIndex;
 
     if (*count >= MAX_ITEMS) {
@@ -197,7 +197,7 @@ void addItem(Item items[], int *count) {
     printf("\nItem added successfully.\n");
 }
 
-void displayItems(const Item items[], int count) {
+void displayItems(const struct Item items[], int count) {
     int i;
 
     if (count == 0) {
@@ -222,7 +222,7 @@ void displayItems(const Item items[], int count) {
     }
 }
 
-void searchItem(const Item items[], int count) {
+void searchItem(const struct Item items[], int count) {
     int id;
     int index;
 
@@ -238,7 +238,7 @@ void searchItem(const Item items[], int count) {
         return;
     }
 
-    index = findItemIndexById((Item *)items, count, id);
+    index = findItemIndexById((struct Item *)items, count, id);
     if (index == -1) {
         printf("Item with ID %d not found.\n", id);
         return;
@@ -254,7 +254,7 @@ void searchItem(const Item items[], int count) {
     printf("Supplier Phone: %s\n", items[index].supplier.phone);
 }
 
-void modifyItem(Item items[], int count) {
+void modifyItem(struct Item items[], int count) {
     int id;
     int index;
 
@@ -313,7 +313,7 @@ void modifyItem(Item items[], int count) {
     printf("\nItem updated successfully.\n");
 }
 
-void deleteItem(Item items[], int *count) {
+void deleteItem(struct Item items[], int *count) {
     int id;
     int index;
     int i;
@@ -344,7 +344,7 @@ void deleteItem(Item items[], int *count) {
     printf("\nItem deleted successfully.\n");
 }
 
-void issueItem(Item items[], int count) {
+void issueItem(struct Item items[], int count) {
     int id;
     int issueQuantity;
     int index;
@@ -388,7 +388,7 @@ void issueItem(Item items[], int count) {
     printf("Remaining stock: %d\n", items[index].quantity);
 }
 
-void calculateInventoryTotals(const Item items[], int count) {
+void calculateInventoryTotals(const struct Item items[], int count) {
     int i;
     int activeCount = 0;
     float totalValue = 0.0f;
@@ -417,7 +417,7 @@ void calculateInventoryTotals(const Item items[], int count) {
     printf("Average Value per Active Item: %.2f\n", averageValue);
 }
 
-void findHighestLowestValueItem(const Item items[], int count) {
+void findHighestLowestValueItem(const struct Item items[], int count) {
     int i;
     int highestIndex = -1;
     int lowestIndex = -1;
@@ -460,7 +460,7 @@ void findHighestLowestValueItem(const Item items[], int count) {
            items[lowestIndex].quantity * items[lowestIndex].unitPrice);
 }
 
-void countLowStockItems(const Item items[], int count) {
+void countLowStockItems(const struct Item items[], int count) {
     int threshold;
     int i;
     int lowStockCount = 0;
@@ -486,7 +486,7 @@ void countLowStockItems(const Item items[], int count) {
     printf("Items with quantity below %d: %d\n", threshold, lowStockCount);
 }
 
-void concatenateItemAndCategory(const Item items[], int count) {
+void concatenateItemAndCategory(const struct Item items[], int count) {
     int id;
     int index;
     char combined[NAME_LEN + CAT_LEN + 5];
@@ -503,7 +503,7 @@ void concatenateItemAndCategory(const Item items[], int count) {
         return;
     }
 
-    index = findItemIndexById((Item *)items, count, id);
+    index = findItemIndexById((struct Item *)items, count, id);
     if (index == -1) {
         printf("Item with ID %d not found.\n", id);
         return;
@@ -516,7 +516,7 @@ void concatenateItemAndCategory(const Item items[], int count) {
     printf("Concatenated String: %s\n", combined);
 }
 
-void checkSubstringInItemName(const Item items[], int count) {
+void checkSubstringInItemName(const struct Item items[], int count) {
     char keyword[30];
     int i;
     int foundAny = 0;
